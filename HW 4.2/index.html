@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HW 4.2. Перевірка числа</title>
+</head>
+<body>
+    <h1>HW 4.2. Перевірка числа</h1>
+    <p>Дано тризначне число, яке надае користувач, потрибно визначити:</p>
+    <ul>
+        <li>Чи правда, що всі цифри однакові?</li>
+        <li>Чи є серед цифр цифри однакові?</li>
+    </ul>
+
+    <script>
+        const threeDigitNumb = prompt('Введіть тризначне число', ['123']);
+        const firstDigit = threeDigitNumb[0];
+        const secondDigit = threeDigitNumb[1];
+        const thirdDigit = threeDigitNumb[2];
+
+        if (firstDigit === secondDigit && secondDigit === thirdDigit) {
+            alert('Цифри однакові');
+        } 
+        else if (firstDigit === secondDigit || secondDigit === thirdDigit || firstDigit === thirdDigit) {
+            alert('Серед цифр є однакові');
+        } 
+        else {
+            alert('Всі цифри різні');
+        }
+
+    </script>
+</body>
+</html>

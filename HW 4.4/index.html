@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HW 4.4. Робота з switch…case</title>
+</head>
+<body>
+    <h1>
+        HW 4.4. Робота з switch…case
+    </h1>
+    <ul>
+        <li>Переписати код нижче з використанням конструкції switch…case</li>
+    </ul>
+
+    <pre>
+        let numOrStr = prompt('input number or string');
+        console.log(numOrStr)
+
+        if(numOrStr === null) {
+            console.log('ви скасували')
+        } else if( numOrStr.trim() === '' ) {
+            console.log('Empty String');
+        } else if ( isNaN( +numOrStr ) ) {
+            console.log(' number is Ba_NaN')
+        } else {
+            console.log('OK!')
+        }
+    </pre>
+
+    <script>
+        let numOrStr = prompt('input number or string');
+        console.log(numOrStr)
+
+        switch (numOrStr) {
+            case null:
+                console.log('ви скасували');
+                break;
+            case numOrStr.trim() === '':
+                console.log('Empty String');
+                break;
+            case isNaN(+numOrStr):
+                console.log(' number is Ba_NaN');
+                break;
+            default:
+                console.log('OK!');
+        }
+    </script>
+</body>
+</html>
