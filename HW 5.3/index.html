@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HW 5.3. Пошук потрібних чисел</title>
+</head>
+<body>
+    <h1>HW 5.3. Пошук потрібних чисел</h1>
+    <ul>
+        <li>Дано ціле число N (ввести через prompt). Вивести всі цілі числа від 1 до 100, квадрат яких не перевищує числа N</li>
+    </ul>
+
+
+    <script>
+        const userSquareNum = prompt('Введіть число N');
+        for (let i = 1; i <= 100; i++) {
+            if (i ** 2 <= userSquareNum) {
+                console.log(i);
+            }
+        }
+    </script>
+</body>
+</html>

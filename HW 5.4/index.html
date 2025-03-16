@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HW 5.4. Просте число чи ні</title>
+</head>
+<body>
+    <h1>HW 5.4. Просте число чи ні</h1>
+    <ul>
+        <li>Дано ціле число (ввести через 'prompt'). З'ясувати, чи просте воно (простим називається число, більше 1, що не має інших дільників, крім 1 і себе).</li>
+    </ul>
+
+    <script>
+        const userNum = prompt('Введіть число');
+        let isPrime = true;
+        for (let i = 2; i < userNum; i++) {
+            if (userNum % i === 0) {
+                isPrime = false;
+                break;
+            }
+        }
+        if (isPrime) {
+            console.log('Число ' + userNum + ' є простим');
+        } else {
+            console.log('Число ' + userNum + ' не є простим');
+        }
+    </script>
+</body>
+</html>
