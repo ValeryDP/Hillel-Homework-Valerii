@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HW 6.2. Визначення середнього арифметичного.</title>
+</head>
+<body>
+    <h1>HW 6.2. Визначення середнього арифметичного.</h1>
+    <ul>
+        <li>Дано масив з елементами різних типів. Створити функцію яка вираховує середнє арифметичне лише числових елементів даного масиву.</li>
+    </ul>
+
+    <script>
+
+    let mixedArray = [5, "some text", 18, true, 13, null];
+
+    let result = averageOfNumbers(mixedArray);
+
+
+    function averageOfNumbers(arr) {
+
+        let sum = 0;
+        let count = 0;
+
+        for (let i = 0; i < arr.length; i++) {
+            if (typeof arr[i] === "number") {
+                sum += arr[i]; 
+                count++; 
+            }
+        }
+
+        if (count === 0) {
+            return null;
+        }
+
+        return sum / count;
+    }
+
+    console.log("Середнє арифметичне чисел:", result);
+
+    </script>
+    
+</body>
+</html>

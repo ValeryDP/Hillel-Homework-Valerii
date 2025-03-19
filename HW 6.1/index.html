@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HW 6.1. Написати функцію видалення масиву символів</title>
+</head>
+<body>
+    <h1>HW 6.1. Написати функцію видалення масиву символів</h1>
+    <ul>
+        <li>Створити функцію, яка прибирає з рядка всі символи, які ми передали другим аргументом. 'func(" hello world", ['l', 'd'])' поверне нам "heo wor". Вихідний рядок та символи для видалення задає користувач.
+        </li>
+    </ul>
+
+
+
+
+<script>
+    let userString = prompt("Вихідний рядок:");
+
+    let symbolOne = prompt("Введіть перший символ для видалення:");
+    let symbolTwo = prompt("Введіть другий символ для видалення:");
+
+    let symbolsToRemove = [symbolOne, symbolTwo]; 
+
+    let result = removeSymbols(userString, symbolsToRemove);
+
+    function removeSymbols(str, symbolsToRemove) {
+    let result = "";
+
+    for (let i = 0; i < str.length; i++) {
+        if (!symbolsToRemove.includes(str[i])) {
+            result += str[i]; 
+        }
+    }
+        return result;
+    }
+
+    alert("Результат: " + result);
+
+</script>
+</body>
+</html>
