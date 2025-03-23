@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HW 7.3. Функція з циклом</title>
+</head>
+<body>
+    <h1>HW 7.3. Функція з циклом</h1>
+    <ul>
+        <li>
+            Цикл на кожній ітерації пропонує через prompt ввести число більше 100 (але максимум 10 ітерацій циклу) . Якщо відвідувач ввів число менше ста – попросити ввести ще раз, і таке інше. Якщо користувач вводить більше ста, текст або цикл закінчує всі ітерації, то функція виводить в консоль останній введення користувача і завершує функцію.
+        </li>
+    </ul>
+    
+
+    <script>
+        function askNumber() {
+            let number;
+            
+            for (let i = 0; i < 10; i++) {
+                number = prompt("Введіть число більше 100:");
+                
+                if (number === null) {
+                console.log("Скасовано");
+                return;
+                }
+
+                number = Number(number);
+
+                if (!isNaN(number) && number > 100) {
+                break;
+                }
+            }
+
+            console.log("Останнє введення:", number);
+            }
+
+        askNumber();
+
+    </script>
+</body>
+</html>

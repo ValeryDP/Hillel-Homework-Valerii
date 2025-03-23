@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HW 7.1. Замикання</title>
+</head>
+<body>
+    <h1>
+        HW 7.1. Замикання
+    </h1>
+    <ul>
+        <li>Написати функцію, яка приймає 1 параметр. Та скадае значення з тим, що передали перший раз і т. д. Все це із замиканнями, наприклад: 
+            <br><br>
+            console.log(sum(4)); // 4
+            <br>
+            console.log(sum(6)); // 10
+            <br>
+            console.log(sum(10)); // 20
+            <br>
+            console.log(sum(7)); // 27
+        </li>
+    </ul>
+
+    <script>
+        function createSum() {
+        let total = 0;
+        
+        return function (num) {
+            total += num;
+            return total;
+        };
+        }
+
+        let sum = createSum();
+
+        console.log(sum(4));
+        console.log(sum(6));
+        console.log(sum(10));
+        console.log(sum(7));  
+        console.log(sum(8));
+
+    </script>
+</body>
+</html>
