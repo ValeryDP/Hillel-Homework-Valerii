@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HW 9.1. Сумма зарплат</title>
+</head>
+<body>
+    <ul> 
+        <li>Дізнатись суму всіх зарплат користувачів.<br>
+            Об'єкт може містити невідому кількість департаментів та співробітників
+        </li>
+        <li>Використати рекурсію</li>
+    </ul>
+
+    <script>
+        let company = {
+            sales: [{name: 'Jhon', salary: 1000}, {name: 'Alice', salary: 600}],
+            development: {
+                sites: [{name: 'Peter', salary: 2000}, {name: 'Alex', salary: 2500}],
+                internals: [{name: 'Jack', salary: 1300}]
+            }
+        };
+
+        function sumSalaries(department) {
+            if (Array.isArray(department)) {
+                return department.reduce((sum, employee) => sum + employee.salary, 0);
+            } else {
+                return Object.values(department).reduce((sum, subDep) => sum + sumSalaries(subDep), 0);
+            }
+        }
+
+        let totalSalary = sumSalaries(company);
+        console.log(totalSalary);
+        
+    </script>
+</body>
+</html>
