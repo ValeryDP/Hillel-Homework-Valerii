@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HW 10.1. Картка користувача</title>
+</head>
+<body>
+    <ul>
+        <li>Створіть об'єкт, що містить інформацію про користувача, таку як ім'я, вік, місце проживання тощо. Створіть метод об'єкту для отримання та відображення цих даних.</li>
+    </ul>
+
+
+
+    <script>
+
+        let user = {
+        name: "Valerii",   
+        age: 35,    
+        city: "Dnipro",
+        position: "Junior Frontend Developer",
+
+        showInfo: function() {
+
+        console.log("Name: " + this.name);
+        console.log("Age: " + this.age);
+        console.log("City: " + this.city);
+        console.log("Position: " + this.position);
+            }
+        };
+
+        user.showInfo();
+    </script>
+</body>
+</html>

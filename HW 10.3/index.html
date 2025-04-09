@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HW 10.3. Книга контактів</title>
+</head>
+<body>
+    <ul>
+        <li>
+            Створіть об'єкт, який матиме одну властивість з масивом об'єктів. Які представляють контакти у вашій контактній книзі. Кожен об'єкт має містити ім'я, номер телефону та адресу електронної пошти. Додайте метод для пошуку контакту за ім'ям та метод для додавання нових контактів.
+        </li>
+    </ul>
+
+    <script>
+
+    let phoneBook = {
+
+    contacts: [
+        {
+        name: "Adam",
+        phone: "80990001122",
+        email: "adam@gmail.com"
+        },
+        {
+        name: "Eva",
+        phone: "80660003344",
+        email: "eva@gmail.com"
+        }
+    ],
+
+
+    findContact: function(name) {
+
+        for (let i = 0; i < this.contacts.length; i++) {
+        if (this.contacts[i].name === name) {
+            console.log("Contact found:");
+            console.log("Name: " + this.contacts[i].name);
+            console.log("Phone: " + this.contacts[i].phone);
+            console.log("Email: " + this.contacts[i].email);
+            return; 
+        }
+        }
+        console.log("No contact found");
+    },
+
+
+    addContact: function(newContact) {
+        this.contacts.push(newContact);
+        console.log("Contact added!");
+    }
+    };
+
+
+    </script>
+</body>
+</html>
