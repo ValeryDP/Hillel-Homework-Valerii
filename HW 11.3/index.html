@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HW 11.3. Отримання випадкового зображення</title>
+    <style>
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        img {
+            width: 500px;
+            margin-bottom: 40px;
+        }
+    </style>
+</head>
+<body>
+    <ul>
+        <li>Покласти в папку будь-які зображення 1.jpg, 2.jpg, 3.jpg, 4.jpg, 5.jpg, 6.jpg, 7.jpg, 8.jpg, 9.jpg. Вивести зображення, отримане випадковим чином (Math.random)</li>
+    </ul>
+
+    <div class="container">
+        <img id="randomImage" src="" alt="Изображение">
+        <button onclick="showRandomImage()">Show Image</button>
+    </div>
+    
+
+    <script>
+        function showRandomImage() {
+
+        const randomNumber = Math.floor(Math.random() * 9) + 1;
+        const imagePath = `img/${randomNumber}.jpg`;
+        const imageElement = document.getElementById("randomImage");
+        imageElement.src = imagePath;
+        }
+
+        showRandomImage();
+    </script>
+</body>
+</html>
