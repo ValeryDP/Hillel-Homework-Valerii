@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HW 12.1. Переход на сторінку</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+        button {
+            padding: 10px 20px;
+            margin: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        #saveLinkBtn {
+            background-color: #4CAF50; /* Green */
+            color: white;
+            border: none;
+            border-radius: 5px;
+        }
+
+        #goToLinkBtn {
+            background-color: #008CBA; /* Blue */
+            color: white;
+            border: none;
+            border-radius: 5px;
+        }
+
+        .buttons-wrapper {
+            width: 40%;
+            display: flex;
+            justify-content: center;
+            margin: 40px auto;
+            padding: 40px;
+            background: lightgrey;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+    <ul>
+        <li>На сторінці є дві кнопки. При натисканні на першу кнопку користувач повинен ввести в prompt посилання, при натисканні на другу – переадресовується на інший сайт (за раніше введеним посиланням).
+        </li>
+    </ul>
+    <div class="buttons-wrapper">
+        <button id="saveLinkBtn">Enter link</button>
+        <button id="goToLinkBtn">Follow the link</button>
+    </div>
+    
+
+    <script>
+        let savedLink = "";
+
+        const saveBtn = document.getElementById("saveLinkBtn");
+        const goBtn = document.getElementById("goToLinkBtn");
+
+        saveBtn.addEventListener("click", function () {
+        const userLink = prompt("Enter a link (e.g., https://ithillel.ua/):");
+
+        if (userLink) {
+            savedLink = userLink;
+            alert("Link saved!");
+        } else {
+            alert("Not filled");
+        }
+        });
+
+        goBtn.addEventListener("click", function () {
+        if (savedLink) {
+            window.location.href = savedLink;
+        } else {
+            alert("Please enter the link first!");
+        }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HW 12.3. TODO лист</title>
+</head>
+<body>
+    <p>Створіть HTML-сторінку, яка містить список завдань (to-do list) з можливістю додавання нових завдань. Ваше ціль - використовуючи делегування подій, створити обробник подій для списку завдань, який дозволить видаляти завдання при кліку на них.
+    </p>
+    <p>Покроковий план:</p>
+    <ol>
+        <li>Створіть HTML-елементи: список завдань ul, текстове поле для вводу нових завдань та кнопку для додавання.</li>
+        <li>Додайте обробник подій до списку завдань ul, використовуючи делегування.</li>
+        <li>При кліку на будь-якій кнопці видалення, видаліть цей пункт.</li>
+        <li>Додайте можливість вводити нові завдання у текстове поле і додавати їх до списку за допомогою кнопки.</li>
+    </ol>
+
+    <h2>TODO лист</h2>
+
+    <ul id="taskList">
+    
+    </ul>
+
+    <input type="text" id="taskInput" placeholder="Enter the task">
+    <button id="addTaskBtn">Add</button>
+
+
+
+    <script>
+        const taskInput = document.getElementById("taskInput");
+        const addTaskBtn = document.getElementById("addTaskBtn");
+        const taskList = document.getElementById("taskList");
+
+        addTaskBtn.addEventListener("click", function () {
+        const taskText = taskInput.value.trim();
+
+        if (taskText !== "") {
+            const li = document.createElement("li");
+            li.innerHTML = `${taskText} <button class="deleteBtn">Delete</button>`;
+            taskList.appendChild(li);
+            taskInput.value = ""; 
+        } else {
+            alert("Enter the task text!");
+        }
+        });
+
+        taskList.addEventListener("click", function (event) {
+        if (event.target.classList.contains("deleteBtn")) {
+            const liToDelete = event.target.parentElement;
+            taskList.removeChild(liToDelete);
+        }
+        });
+    </script>
+    
+</body>
+</html>
