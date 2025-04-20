@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HW 13.1. Валідація з RegEx</title>
+    <style>
+        body {
+            font-family: Verdana, sans-serif;
+
+        }
+        .form-wrapper {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 40px auto;
+        }
+
+        .form-wrapper form {
+            display: flex;
+            flex-direction: column;
+            width: 360px;
+            padding: 30px;
+            border-radius: 20px;
+            background:#f6f5fa;
+        }
+
+        .form-wrapper form h2{
+            color: #f32462;
+        }
+
+        .form-wrapper form button{
+            color: #fff;
+            background:#24a4ff;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 12px;
+            box-shadow: 0px 0px 6px #24a4ff;
+        }
+
+        .form-wrapper form button:hover{
+            background:#24a4ffaf;
+            cursor: pointer;
+        }
+
+
+        .error {
+            color: red;
+            font-size: 0.8em;
+            margin-bottom: 10px;
+        }
+
+        input, textarea {
+            display: block;
+            width: 100%;
+            margin-bottom: 5px;
+            padding: 8px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+        }
+
+    </style>
+</head>
+<body>
+    <p>Доробити валідацію для надсилання повідомлення з використанням регулярних виразів:</p>
+    <p>Поля:</p>
+    <ul>
+        <li>Name - обов'язкове текстове поле</li>
+        <li>Message - текстове поле не менше 5 символів</li>
+        <li>Phone number - обов'язкове поле типу phone. З початком на +380</li>
+        <li>Email - email обов'язково повинен мати @ та крапку</li>
+        <li>Після відправки, в консоль відображаємо дані, які ввів користувач.</li>
+    </ul>
+    <p>Під час помилки показувати її під полем.</p>
+
+
+    <div class="form-wrapper">
+        <form id="contactForm">
+            <h2>We would like to help you</h2>
+            
+            <input type="text" id="name" placeholder="Name" />
+            <div class="error" id="nameError"></div>
+            
+            <textarea id="message" placeholder="Message"></textarea>
+            <div class="error" id="messageError"></div>
+            
+            <h4>HOW TO ANSWER YOU?</h4>
+            
+            <input type="text" id="phone" placeholder="Phone number +380..." />
+            <div class="error" id="phoneError"></div>
+            
+            <input type="text" id="email" placeholder="Email" />
+            <div class="error" id="emailError"></div>
+            
+            <button type="submit">Send message</button>
+        </form>
+    </div>
+
+
+    <script>
+        document.getElementById("contactForm").addEventListener("submit", function (e) {
+        e.preventDefault();
+
+        document.querySelectorAll(".error").forEach(el => el.textContent = "");
+
+        const name = document.getElementById("name").value.trim();
+        const message = document.getElementById("message").value.trim();
+        const phone = document.getElementById("phone").value.trim();
+        const email = document.getElementById("email").value.trim();
+
+        let hasError = false;
+
+        if (name === "") {
+            document.getElementById("nameError").textContent = "Name is required.";
+            hasError = true;
+        }
+
+        if (message.length < 5) {
+            document.getElementById("messageError").textContent = "Message must be at least 5 characters.";
+            hasError = true;
+        }
+
+        const phoneRegex = /^\+380\d{9}$/;
+        if (!phoneRegex.test(phone)) {
+            document.getElementById("phoneError").textContent = "Phone must start with +380 and have 12 digits.";
+            hasError = true;
+        }
+
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(email)) {
+            document.getElementById("emailError").textContent = "Email must be valid.";
+            hasError = true;
+        }
+
+        if (!hasError) {
+            console.log({
+            name,
+            message,
+            phone,
+            email
+            });
+        }
+        });
+    </script>
+</body>
+</html>
