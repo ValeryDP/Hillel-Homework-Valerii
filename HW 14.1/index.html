@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HW 14.1. Слайдер</title>
+    <style>
+        /* body {
+            margin: 0;
+            padding: 0;
+            font-family: sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+        } */
+        .slider-wrapper {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #f0f0f0;
+        }
+
+        .hillel-slider {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: white;
+            padding: 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            margin: 40px auto;
+        }
+
+        #slider-image {
+            width: 500px;
+            aspect-ratio: 16/9;
+            object-fit: cover;
+            object-position: center;
+            height: auto;
+            border-radius: 8px;
+        }
+
+        button {
+            padding: 10px 15px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 50%;
+            color: #4e4e4e;
+            border: 1px solid #ccc;
+        }
+    </style>
+</head>
+<body>
+    <p>Пишемо свій слайдер зображень, який повинен:</p>
+    <ol>
+        <li>Відображати зображення та кнопки Next, Prev з боків від зображення;</li>
+        <li>При кліку на Next - показуємо наступне зображення.</li>
+    </ol>
+
+    <div class="slider-wrapper">
+        <div class="hillel-slider">
+            <button id="prev">&lt;</button>
+            <img id="slider-image" src="img/1.jpg" alt="Слайд">
+            <button id="next">&gt;</button>
+        </div>
+    </div>
+
+    
+    <script>
+        var images = ['img/1.jpg', 'img/2.jpg', 'img/3.jpg', 'img/4.jpg', 'img/5.jpg', 'img/6.jpg', 'img/7.jpg', 'img/8.jpg', 'img/9.jpg', 'img/10.jpg'];
+        var currentIndex = 0;
+
+        var sliderImage = document.getElementById('slider-image');
+        var nextButton = document.getElementById('next');
+        var prevButton = document.getElementById('prev');
+
+        nextButton.addEventListener('click', function() {
+        currentIndex++;
+        if (currentIndex >= images.length) {
+            currentIndex = 0;
+        }
+        sliderImage.src = images[currentIndex];
+        });
+
+        prevButton.addEventListener('click', function() {
+        currentIndex--;
+        if (currentIndex < 0) {
+            currentIndex = images.length - 1;
+        }
+        sliderImage.src = images[currentIndex];
+        });
+    </script>
+</body>
+</html>
