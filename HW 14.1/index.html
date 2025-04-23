@@ -7,9 +7,12 @@
     <style>
         .slider-wrapper {
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
             background-color: #f0f0f0;
+            margin-top: 40px;
+            padding: 30px;
         }
 
         .hillel-slider {
@@ -19,7 +22,6 @@
             background: white;
             padding: 20px;
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            margin: 40px auto;
         }
 
         #slider-image {
@@ -39,6 +41,25 @@
             color: #4e4e4e;
             border: 1px solid #ccc;
         }
+
+        #dots-container {
+            margin-top: 15px;
+            display: flex;
+            gap: 8px;
+        }
+
+        .dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: #ccc;
+            cursor: pointer;
+        }
+
+        .dot.active {
+            background-color: #333;
+        }
+        
     </style>
 </head>
 <body>
@@ -46,6 +67,9 @@
     <ol>
         <li>Відображати зображення та кнопки Next, Prev з боків від зображення;</li>
         <li>При кліку на Next - показуємо наступне зображення.</li>
+        <li>При досягненні останнього зображення - ховати кнопку Next. Аналогічно з першим зображенням і кнопкою Prev</li>
+        <li>Кількість слайдів може бути будь-якою</li>
+        <li>Додати можливість навігації через точки під слайдами (клік по точці - показує відповідне зображення)</li>
     </ol>
 
     <div class="slider-wrapper">
@@ -54,6 +78,7 @@
             <img id="slider-image" src="img/1.jpg" alt="Слайд">
             <button id="next">&gt;</button>
         </div>
+        <div id="dots-container"></div>
     </div>
 
     
@@ -64,22 +89,62 @@
         var sliderImage = document.getElementById('slider-image');
         var nextButton = document.getElementById('next');
         var prevButton = document.getElementById('prev');
+        var dotsContainer = document.getElementById('dots-container');
+
+        function createDots() {
+        dotsContainer.innerHTML = '';
+
+        for (var i = 0; i < images.length; i++) {
+            var dot = document.createElement('div');
+            dot.classList.add('dot');
+
+                if (i === currentIndex) {
+                dot.classList.add('active');
+                }
+
+            dot.addEventListener('click', function(index) {
+                return function() {
+                    currentIndex = index;
+                    updateSlider();
+                };
+            }(i));
+                dotsContainer.appendChild(dot);
+            }
+        }
+
+        function updateSlider() {
+        sliderImage.src = images[currentIndex];
+
+        createDots();
+
+        if (currentIndex === 0) {
+            prevButton.style.visibility = 'hidden'; 
+        } else {
+            prevButton.style.visibility = 'visible'; 
+        }
+
+        if (currentIndex === images.length - 1) {
+            nextButton.style.visibility = 'hidden';
+            } else {
+                nextButton.style.visibility = 'visible';
+            }
+        }
 
         nextButton.addEventListener('click', function() {
-        currentIndex++;
-        if (currentIndex >= images.length) {
-            currentIndex = 0;
-        }
-        sliderImage.src = images[currentIndex];
+            if (currentIndex < images.length - 1) {
+                currentIndex = currentIndex + 1;
+                updateSlider();
+            }
         });
 
         prevButton.addEventListener('click', function() {
-        currentIndex--;
-        if (currentIndex < 0) {
-            currentIndex = images.length - 1;
-        }
-        sliderImage.src = images[currentIndex];
+            if (currentIndex > 0) {
+                currentIndex = currentIndex - 1;
+                updateSlider();
+            }
         });
+
+        updateSlider();
     </script>
 </body>
 </html>
