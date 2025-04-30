@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HW 16.1 Конструктор сутності "Студент"</title>
+</head>
+<body>
+    <ul>
+        <li>
+            Вам потрібно зробити конструктор сутності "Студент". Студент має ім'я, прізвище, рік народження — це властивості. Є масив з оцінками, це також властивість. І є можливість отримати вік студента та його середній бал – це методи.
+        </li>
+        <li>
+            Ще у всіх Студентів є по масиву однакової довжини, у ньому 25 елементів, спочатку він не заповнений, але на 25 елементів. Це масив, в якому відзначається відвідуваність, щоразу коли ми викликаємо метод .present() на чергове порожнє місце, в масив записується true, коли викликаємо .absent() - записується false. Передбачте будь-який захист від того, щоб у масиві відвідуваності не могло бути більше 25 записів. Масив – це властивість, present та absent – методи.
+        </li>    
+        <li>
+            Останній метод: .summary(), перевіряє середню оцінку і середнє відвідування(кількістьВідвідин/кількістьЗанять), і якщо середня оцінка більше 90, а середнє відвідування більше 0.9, то метод summary повертає рядок "Молодець!", якщо одне з цих значень менше , то - "Добре, але можна краще ", якщо обидва нижче - "Редиска!".
+        </li>
+        <li>
+            Не забудьте після того, як напишите цей конструктор, створити 2-3 екземпляри (конкретних студентів) і показати використання цих методів.
+        </li>
+    </ul>
+
+
+
+    <script>
+    class Student {
+        constructor(firstName, lastName, birthYear, grades) {
+            this.firstName = firstName;
+            this.lastName = lastName;
+            this.birthYear = birthYear;
+            this.grades = grades || [];
+            this.attendance = new Array(25).fill(null);
+            this.attendanceIndex = 0;
+        }
+
+        getAge() {
+            const currentYear = new Date().getFullYear();
+            return currentYear - this.birthYear;
+        }
+
+        getAverageGrade() {
+            if (this.grades.length === 0) {
+            return 0;
+            }
+
+            let sum = 0;
+            for (let i = 0; i < this.grades.length; i++) {
+            sum += this.grades[i];
+            }
+
+            return sum / this.grades.length;
+        }
+
+        present() {
+            if (this.attendanceIndex < 25) {
+            this.attendance[this.attendanceIndex] = true;
+            this.attendanceIndex++;
+            } else {
+            console.log('Більше не можна відзначати відвідуваність - уже 25 записів.');
+            }
+        }
+
+        absent() {
+            if (this.attendanceIndex < 25) {
+            this.attendance[this.attendanceIndex] = false;
+            this.attendanceIndex++;
+            } else {
+            console.log('Більше не можна відзначати відвідуваність - уже 25 записів.');
+            }
+        }
+
+        summary() {
+            const averageGrade = this.getAverageGrade();
+
+            let attended = 0;
+            let totalMarked = 0;
+
+            for (let i = 0; i < this.attendance.length; i++) {
+            if (this.attendance[i] === true) {
+                attended++;
+                totalMarked++;
+            } else if (this.attendance[i] === false) {
+                totalMarked++;
+            }
+            }
+
+            let attendanceRate = 0;
+            if (totalMarked > 0) {
+            attendanceRate = attended / totalMarked;
+            }
+
+            if (averageGrade > 90 && attendanceRate > 0.9) {
+            return 'Молодець!';
+            }
+
+            if (averageGrade > 90 || attendanceRate > 0.9) {
+            return 'Добре, але можна краще';
+            }
+
+            return 'Редиска!';
+        }
+    }
+
+    const student1 = new Student('Марк', 'Марченко', 1999, [95, 92, 98]);
+    const student2 = new Student('Надія', 'Батьківна', 2002, [98, 85, 90]);
+    const student3 = new Student('Петро', 'Петренко', 1995, [80, 70, 60]);
+
+    for (let i = 0; i < 20; i++) {
+    student1.present();
+    }
+
+    for (let i = 0; i < 20; i++) {
+    if (i % 2 === 0) {
+        student2.present();
+    } else {
+        student2.absent();
+    }
+    }
+
+    for (let i = 0; i < 20; i++) {
+    student3.absent();
+    }
+
+    console.log(student1.firstName + ' ' + student1.lastName + ' — вік: ' + student1.getAge());
+    console.log('Середня оцінка: ' + student1.getAverageGrade());
+    console.log('Підсумок: ' + student1.summary());
+
+    console.log(student2.firstName + ' ' + student2.lastName + ' — вік: ' + student2.getAge());
+    console.log('Середня оцінка: ' + student2.getAverageGrade());
+    console.log('Підсумок: ' + student2.summary());
+
+    console.log(student3.firstName + ' ' + student3.lastName + ' — вік: ' + student3.getAge());
+    console.log('Середня оцінка: ' + student3.getAverageGrade());
+    console.log('Підсумок: ' + student3.summary());
+
+    </script>
+</body>
+</html>
