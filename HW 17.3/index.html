@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HW 17.3. Клас "Банківський рахунок"</title>
+</head>
+<body>
+    <ul>
+        <li>Створіть клас BankAccount, який буде представляти банківський рахунок. Додайте властивість балансу та методи для внесення та зняття грошей.</li>
+    </ul>
+
+    <script>
+        class BankAccount {
+        constructor(initialBalance) {
+            this.balance = initialBalance;
+        }
+
+        getBalance() {
+            return this.balance;
+        }
+
+        deposit(amount) {
+            this.balance += amount;
+        }
+
+        withdraw(amount) {
+            if (amount <= this.balance) {
+            this.balance -= amount;
+            } else {
+            console.log("Недостатньо коштів");
+            }
+        }
+        }
+
+        const account1 = new BankAccount(1000);
+
+        console.log(account1.getBalance());
+
+        account1.deposit(500);
+        console.log(account1.getBalance());
+
+        account1.withdraw(200);
+        console.log(account1.getBalance());
+
+    </script>
+</body>
+</html>
