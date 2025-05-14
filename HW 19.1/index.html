@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HW 19.1. Віджет погоди</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to right, #83a4d4, #b6fbff);
+            margin: 0;
+            padding: 20px;
+            color: #333;
+            }
+
+            h1 {
+            font-size: 32px;
+            margin-bottom: 20px;
+            }
+
+            #weather {
+            background-color: #ffffffcc;
+            border-radius: 10px;
+            padding: 20px;
+            display: inline-block;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            }
+
+            #refresh {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #0077cc;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background 0.3s;
+            }
+
+            #refresh:hover {
+            background-color: #005fa3;
+            }
+
+            .widget-wrapper {
+                width: 300px;
+                margin: 40px auto;
+                padding: 20px;
+                border: 1px solid #ccc;
+                border-radius: 8px;
+                background: #f3f3f3;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+    </style>
+</head>
+<body>
+    <ul>
+        <li>За допомогою запиту вивести виджет погоди. Ресурс API https://openweathermap.org/current</li>
+        <li>Також потрібно додати кнопку оновлення данних.</li>
+    </ul>
+
+    <div class="widget-wrapper">
+        <h1>Погода в місті</h1>
+        <div id="weather">
+            <p>Завантаження даних...</p>
+        </div>
+        <button id="refresh">Оновити погоду</button>
+    </div>
+    
+    <script>
+        let city = "Dnipro"; 
+        let apiKey = "f2f2cb551eb3b18926a21d6577bc34fc";
+
+        let weatherDiv = document.getElementById("weather");
+        let refreshBtn = document.getElementById("refresh");
+
+        function loadWeather() {
+            const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric&lang=ua`;
+
+            fetch(url)
+                .then(response => response.json())
+                .then(data => {
+                if (data.cod !== 200) {
+                    weatherDiv.innerHTML = `<p>Помилка: ${data.message}</p>`;
+                    return;
+                }
+
+                const temp = data.main.temp;
+                const desc = data.weather[0].description;
+                const cityName = data.name;
+
+                weatherDiv.innerHTML = `
+                    <h2>${cityName}</h2>
+                    <p>Температура: ${temp}°C</p>
+                    <p>Стан: ${desc}</p>
+                `;
+                })
+                .catch(error => {
+                weatherDiv.innerHTML = `<p>Помилка завантаження погоди 😢</p>`;
+                console.error("Помилка:", error);
+                });
+            }
+
+        loadWeather();
+
+        refreshBtn.addEventListener("click", loadWeather);
+    </script>
+</body>
+</html>
