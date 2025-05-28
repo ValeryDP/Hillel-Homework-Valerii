@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8" />
+    <title>HW 23.1 Cтворення АПІ для TODO списку</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #ececec;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        input {
+            padding: 4px;
+            width: 300px;
+            margin-right: 16px;
+            border-radius: 4px;
+        }
+
+        button {
+            padding: 6px 10px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+
+        button:hover {
+            background-color: #218838;
+        }
+
+
+        li {
+            padding: 8px 0;
+            border-bottom: 1px solid #ccc;
+        }
+    </style>
+</head>
+
+<body>
+<h1>TODO</h1>
+    <input id="newTodo" placeholder="Нове завдання" />
+    <button onclick="addTodo()">Додати</button>
+    <ul id="todoList"></ul>
+
+    <script src="app.js"></script>
+</body>
+
+</html>
